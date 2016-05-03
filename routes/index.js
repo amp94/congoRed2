@@ -21,7 +21,8 @@
 var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
-
+var exec = require('child_process').execFile;
+var stringify = require('json-stringify-safe');
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
@@ -38,7 +39,22 @@ exports = module.exports = function(app) {
 	app.get('/', routes.views.index);
 	app.get('/gallery', routes.views.gallery);
 	
-	
+	//app.post('/api/foo', foo);
+	app.get('/api/foo', foo);
+	function foo(req, res){
+		console.log("fun2() start");
+		var args = req.query.data;
+		var result = "";
+		exec('python' ,['./algorithms/example.py',args], function(err, data) {
+			if (err!=null){  
+				console.log("ERROR",err)
+			}
+			else{
+				console.log(data.toString());
+			}          
+			
+		});    
+	};
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 	

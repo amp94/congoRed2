@@ -5,6 +5,40 @@ block intro
 		h1 Gallery
 	
 block content
+	//- script(type='text/javascript' src='scripts/require.js')
+	script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', type='text/javascript')
+
+	script.
+		var selectedImages = [] 
+		$(document).ready(function(){
+			$("button").click(function(){
+				$.get("/api/foo",
+					{
+						name: "IMAGES",
+						data: selectedImages.toString(),
+					});
+		 	});
+		});
+		function handleClick(cb){
+			var s = cb.value.search("url:")
+			var e = cb.value.search("secure_url:")
+			url = cb.value.substring(s+5, e-4)
+			if (cb.checked)
+				selectedImages.push(url)
+			else
+				var index = selectedImages.indexOf(url)
+				if (index > -1) 
+					selectedImages.splice(index, 1)
+		}
+		function toggle(source) {
+			selectedImages = []
+			checkboxes = document.getElementsByName('check')
+			for(var i=0, n=checkboxes.length;i<n;i++){ 
+				checkboxes[i].checked = source.checked
+				handleClick(checkboxes[i])
+			}
+		}
+
 	.container
 		if galleries.length
 			each gallery in galleries
@@ -14,12 +48,23 @@ block content
 				
 				.row.gallery-images
 					if gallery.heroImage.exists
-						.col-sm-4.col-md-4.gallery-image: img(src=gallery._.heroImage.limit(680,680)).img-rounded
+						.col-sm-4.col-md-4.gallery-image 
+							img(src=gallery._.heroImage.limit(680,680),onclick="window.open(this.src)").img-rounded
 						.col-sm-8.col-md-8: .row
 							each image in gallery.images
-								.col-xs-4.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded
+								.col-xs-4.col-sm-4.col-md-3.gallery-image 
+									img(src=image.limit(300,300), onclick="window.open(this.src)").img-rounded
+									input(name="check",type='checkbox', checked=false, value=image, onchange='handleClick(this);')
 					else
 						each image in gallery.images
-							.col-xs-6.col-sm-4.col-md-3.gallery-image: img(src=image.limit(300,300)).img-rounded
+							.col-xs-6.col-sm-4.col-md-3.gallery-image
+								img(src=image.limit(300,300),onclick="window.open(this.src)").img-rounded
+								input(name="check",type='checkbox', checked=false, value=image, onchange='handleClick(this);')
+					input(type='checkbox', onchange='toggle(this)')
+					|  Select All
+			button SUBMIT
+
+
+
 		else
 			h3.text-muted There are no image galleries yet.
