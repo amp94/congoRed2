@@ -22,7 +22,9 @@ var keystone = require('keystone');
 var middleware = require('./middleware');
 var importRoutes = keystone.importer(__dirname);
 var exec = require('child_process').execFile;
-var stringify = require('json-stringify-safe');
+var dialog = require('dialog');
+
+
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
@@ -42,18 +44,30 @@ exports = module.exports = function(app) {
 	//app.post('/api/foo', foo);
 	app.get('/api/foo', foo);
 	function foo(req, res){
-		console.log("fun2() start");
+		//console.log("fun2() start");
 		var args = req.query.data;
+		args = args.replace(/\\/g,"");
+		args = args.replace(/\'/g,"");
+		args = args.replace(/\"/g,"");
+		//console.log("args"+args);
+		var process = args.split(",");
 		var result = "";
-		exec('python' ,['./algorithms/example.py',args], function(err, data) {
-			if (err!=null){  
-				console.log("ERROR",err)
-			}
-			else{
-				console.log(data.toString());
-			}          
-			
-		});    
+		var results = "Image       | Results\n---------------------"
+		resultsDone = 0;
+		for (var i = 0; i <= process.length-1; i++) {
+			exec('java' ,['-jar','./algorithms/Algorithm1.jar',process[i]], function(err, stdout, stderr) {
+				if (err!=null){  
+					console.log("ERROR",err)
+				}
+				else{
+					console.log(stdout);
+					results+="\n"+stdout;
+					resultsDone+=1
+					if (resultsDone == process.length)
+						dialog.info(results,"Results");
+				}          
+			});
+		};
 	};
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
