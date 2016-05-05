@@ -39,22 +39,28 @@ exports = module.exports = function(app) {
 	
 	// Views
 	app.get('/', routes.views.index);
-	app.get('/gallery', routes.views.gallery);
+	app.get('/test', routes.views.test);
+	app.get('/results', routes.views.results);
 	
 	//app.post('/api/foo', foo);
 	app.get('/api/foo', foo);
+	
+	var spawn  = require('child_process').spawn;
+
 	function foo(req, res){
-		//console.log("fun2() start");
+		// console.log("fun2() start");
 		var args = req.query.data;
+		
 		args = args.replace(/\\/g,"");
 		args = args.replace(/\'/g,"");
 		args = args.replace(/\"/g,"");
-		//console.log("args"+args);
+		// console.log("args"+args);
 		var process = args.split(",");
-		var result = "";
 		var results = "Image       | Results\n---------------------"
-		resultsDone = 0;
+		var resultsDone = 0;
+		// console.log(results);
 		for (var i = 0; i <= process.length-1; i++) {
+			// console.log(i)
 			exec('java' ,['-jar','./algorithms/Algorithm1.jar',process[i]], function(err, stdout, stderr) {
 				if (err!=null){  
 					console.log("ERROR",err)
@@ -63,11 +69,13 @@ exports = module.exports = function(app) {
 					console.log(stdout);
 					results+="\n"+stdout;
 					resultsDone+=1
-					if (resultsDone == process.length)
-						dialog.info(results,"Results");
+					if (resultsDone == process.length){
+						console.log("Done")
+					}
 				}          
 			});
 		};
+		res.send("/results");
 	};
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

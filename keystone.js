@@ -49,8 +49,8 @@ keystone.set('routes', require('./routes'));
 // Configure the navigation bar in Keystone's Admin UI
 
 keystone.set('nav', {
-	'galleries': 'galleries',
-	'users': 'users'
+	'users': 'users',
+	'upload': 'galleries'
 });
 
 // Start Keystone to connect to your database and initialise the web server
