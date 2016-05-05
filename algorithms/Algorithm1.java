@@ -425,7 +425,7 @@ public class Algorithm1 {
             try{
                 URL url= new URL(surl);
                 // System.out.println(url);
-                System.out.print(String.format("%-10s | %.2f", name,(double)runTest(url)));
+                System.out.print(String.format("%-10s | %.2f | %s", name,(double)runTest(url),url));
             } catch(MalformedURLException e){
                 System.out.println("MalformedURLException"+surl);
                 e.printStackTrace();

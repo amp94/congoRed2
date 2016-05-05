@@ -39,8 +39,7 @@ exports = module.exports = function(app) {
 	
 	// Views
 	app.get('/', routes.views.index);
-	app.get('/test', routes.views.test);
-	app.get('/results', routes.views.results);
+	app.get('/test', middleware.requireUser, routes.views.test);
 	
 	//app.post('/api/foo', foo);
 	app.get('/api/foo', foo);
@@ -62,16 +61,33 @@ exports = module.exports = function(app) {
 		for (var i = 0; i <= process.length-1; i++) {
 			// console.log(i)
 			exec('java' ,['-jar','./algorithms/Algorithm1.jar',process[i]], function(err, stdout, stderr) {
+				resultsDone += 1;
+				if (resultsDone % 5 ==0){
+					setTimeout(function() {
+					    console.log('Waiting');
+					}, 3000);
+				}
 				if (err!=null){  
 					console.log("ERROR",err)
 				}
 				else{
-					console.log(stdout);
-					results+="\n"+stdout;
-					resultsDone+=1
-					if (resultsDone == process.length){
-						console.log("Done")
-					}
+					// console.log(stdout);
+					
+					var name = stdout.substring(0,stdout.indexOf(' '))
+					var result = stdout.substring(stdout.indexOf('|')+2,stdout.indexOf('|')+6)
+					var url = stdout.substring(stdout.lastIndexOf('|')+7)
+					console.log(name,result,url)
+					Results = keystone.list('Results');
+					 
+					var newResult = new Results.model({
+						  img_name:  name,
+						  img_url: url,
+						  result:   result
+					});
+					 
+					newResult.save(function(err) {
+					    console.log("Result has been saved") // post has been saved	
+					});
 				}          
 			});
 		};

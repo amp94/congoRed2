@@ -7,7 +7,7 @@ block intro
 block content
 	//- script(type='text/javascript' src='scripts/require.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js', type='text/javascript')
-
+	link(href='/keystone/styles/keystone.min.css', rel='stylesheet')
 	script.
 		var selectedImages = [] 
 		$(document).ready(function(){
@@ -68,7 +68,7 @@ block content
 			input(type='checkbox', onchange='toggle(this)')
 			| Select All
 			p
-			button SUBMIT
+			button(class = 'Button Button--success') SUBMIT
 
 
 
