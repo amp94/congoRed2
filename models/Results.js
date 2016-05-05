@@ -12,7 +12,7 @@ var Results = new keystone.List('Results',{ sortable: true, defaultSort: 'img_na
 
 Results.add({
   img_name:  { type: String, required: true, default: "None" },
-  img_url: { type: String, required: true, default: "None" },
+  img_url: { type: Types.Url, required: true, default: "None" },
   result:   { type: String, required: true, default: "None" },
   publishedDate: { type: Date, default: Date.now },
 });
