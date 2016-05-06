@@ -40,37 +40,32 @@ block content
 		}
 
 	.container
+
 		if galleries.length
-			each gallery in galleries
-				h2= gallery.name
-					if gallery.publishedDate
-						.pull-right.text-muted= gallery._.publishedDate.format('Do MMM YYYY')
-				
-				.row.gallery-images
-					if gallery.heroImage.exists
-						.col-sm-4.col-md-4.gallery-image 
-							img(src=gallery._.heroImage.limit(680,680),onclick="window.open(this.src)").img-rounded
-						.col-sm-8.col-md-8: .row
+			.row
+				.col-sm-8
+					each gallery in galleries
+						h2= gallery.name
+							if gallery.publishedDate
+								.pull-right.text-muted= gallery._.publishedDate.format('Do MMM YYYY')
+						
+						.row.gallery-images
 							each image in gallery.images
-								.col-xs-4.col-sm-4.col-md-3.gallery-image 
+								.col-xs-6.col-sm-4.col-md-3.gallery-image
 									img(src=image.limit(300,300), onclick="window.open(this.src)" alt=image.public_id).img-rounded
+									
 									input(name="check",type='checkbox', checked=false, value=image, onchange='handleClick(this);')
 									|	Dot #{image.public_id}
-
-					else
-						each image in gallery.images
-							.col-xs-6.col-sm-4.col-md-3.gallery-image
-								img(src=image.limit(300,300), onclick="window.open(this.src)" alt=image.public_id).img-rounded
-								
-								input(name="check",type='checkbox', checked=false, value=image, onchange='handleClick(this);')
-								|	Dot #{image.public_id}
-			p
-			input(type='checkbox', onchange='toggle(this)')
-			| Select All
-			p
-			button(class = 'Button Button--success') SUBMIT FOR TESTING
-
-
-
+					
+			div(style='bottom: 0; right:0; position: fixed')
+				.panel.panel-default
+					.panel-heading
+						h3.panel-title: a(href='/test') Run Tests
+					.panel-body
+						input(type='checkbox', onchange='toggle(this)')
+						| Select All
+						p
+						button(class = 'Button Button--success') SUBMIT FOR TESTING
+						hr 
 		else
 			h3.text-muted There are no image galleries yet.
