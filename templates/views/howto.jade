@@ -1,0 +1,83 @@
+extends ../layouts/default
+
+block content
+	.container: .jumbotron
+		h2 How to:
+		h2
+		| This application runs the Congo Red Dot Test on uploaded 
+		| images. To use, there are three basic steps:
+		ul#steps
+			li
+				h3
+					a(href="/keystone/galleries") Upload Images
+				p
+				| Once you are in the <strong>Upload</strong> window,
+				| you can create a new gallery of dot images or add
+				| to an existing gallery. 
+				ul#upload
+					li
+						h5 Upload to Existing Gallery
+						p
+						| To add to an existing gallery, 
+						| select the gallery listed in this window by clicking 
+						| its name that will take you to that gallery's page.
+						| Once in that gallery's page, you can add images by
+						| scrolling to the bottom of the page and clicking
+						| <strong>"Upload Images"</strong>. 
+					li
+						h5 Create Gallery
+						p
+						| Otherwise, you can create a gallery to for storing
+						| your images by clicking  <strong>"+Create Gallery"</strong>
+			li
+				h3
+					a(href="/test") Test Images
+				p
+				| Once you are in the <strong>Test</strong> window,
+				| you can test your images by selecting images you want processed
+				
+				ul#test
+					li
+						h5 Test All
+						p
+						| To test all images, scroll to the bottom of the page
+						| and check the box that says "Select All." before clicking
+						| <strong>"Submit for Testing"</strong>.
+					li
+						h5 Test Selected
+						p
+						| To test selected images, as you scroll, check boxes 
+						| corresponding to images you would like tested. 
+						| Scroll to the bottom of the page and click
+						| <strong>"Submit for Testing"</strong>.
+					
+			li
+				h3
+					a(href="/keystone/results") View Results
+				p
+				| Once you are in the <strong>Results</strong> window,
+				| you can see all of the results the test has given for
+				| processed images. 
+				ul#results
+					li
+						h5 Choose attributes to display
+						p
+						| The page defaults on showing just the image name, result,
+						| and url, but you can add attributes to display by clicking 
+						| <strong>"Columns"</strong> and selecting the 
+						| attributes you would like to see. 
+					li
+						h5 Sort By
+						| You have the option to sort your results by name, 
+						| result value, image url, or date it was posted. 
+						| You can do this by clicking the down arrow at the top of the page.
+					li
+						h5 See Image
+						p
+						| You can see the image the result corresponds
+						| to by clicking its url.
+					
+					
+					
+				
+					

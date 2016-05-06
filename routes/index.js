@@ -40,6 +40,7 @@ exports = module.exports = function(app) {
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/test', middleware.requireUser, routes.views.test);
+	app.get('/howto', routes.views.howto);
 	
 	//app.post('/api/foo', foo);
 	app.get('/api/foo', foo);

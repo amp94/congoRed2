@@ -2,30 +2,37 @@ extends ../layouts/default
 
 block content
 	.container: .jumbotron
-		table
-			tr
-				td
-					h2 About Preeclampsia
-					p
-					| Preeclampsia is a pregnancy complication that a pregnant woman might 
-					| develop during her pregnancy. It is characterized by high blood pressure in woman 
-					| who had not previously experienced high blood pressure before and includes signs 
-					| of damage to another organ system. If left untreated, preeclampsia can lead to 
-					| eclampsia, a serious condition that can put a mother and her baby at risk, and in
-					| rare cases, cause death. 
-					| Aberrant protein misfolding and aggregation are two recently discovered 
-					| molecular signatures of preeclampsia. Congo Red dye adheres to misfolded urinary 
-					| proteins of preeclamptic women, a characteristic known as congophilia. This has led 
-					| to the development of the Congo Red Dot Test (CRD) Quantkit, which can provide an 
-					| unbiased and accurate diagnostic test for it. 
-				td
-					div(name="login", align="center")
-						if user && user.canAccessKeystone
-							p
-								a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
-						else
-							p Sign in with the email <strong>angelicamp94@gmail.com</strong> and the password <strong>Angie</strong>.
-							a(href='/keystone/signin').btn.btn-lg.btn-primary Sign in
-								
+		h2 About Preeclampsia
+		p
+		| Preeclampsia is a pregnancy complication that a pregnant woman might 
+		| develop during her pregnancy. It is characterized by high blood pressure in woman 
+		| who had not previously experienced high blood pressure before and includes signs 
+		| of damage to another organ system. If left untreated, preeclampsia can lead to 
+		| eclampsia, a serious condition that can put a mother and her baby at risk, and in
+		| rare cases, cause death. 
+		p
+		| Aberrant protein misfolding and aggregation are two recently discovered 
+		| molecular signatures of preeclampsia. Congo Red dye adheres to misfolded urinary 
+		| proteins of preeclamptic women, a characteristic known as congophilia. This has led 
+		| to the development of the Congo Red Dot Test (CRD) Quantkit, which can provide an 
+		| unbiased and accurate diagnostic test for it. 
+		p
+		p
+		| This application analyzes Congo Red Dot Test images in order to help determine
+		| the level of preeclampsia the dot hints at. To learn how to use this application,
+		| visit the 
+		a(href="/howto") Howto 
+		| page.
+		h1
+		h1
+		h1
+		div(name="login", align="center")
+			if user && user.canAccessKeystone
+				p
+					a(href='/keystone').btn.btn-lg.btn-primary Open the Admin UI
+			else
+				p Sign in with the email <strong>angelicamp94@gmail.com</strong> and the password <strong>Angie</strong>.
+				a(href='/keystone/signin').btn.btn-lg.btn-primary Sign in
+					
 					
 			

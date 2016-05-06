@@ -23,7 +23,7 @@ Results.add({
 /**
  * Registration
  */
-Results.defaultColumns = 'img_name, result';
+Results.defaultColumns = 'img_name, result, img_url';
 
 
 Results.register();
