@@ -8,13 +8,13 @@ block content
 		| images. To use, there are three basic steps:
 		ul#steps
 			li
-				h3
+				h3#upload
 					a(href="/keystone/galleries") Upload Images
 				p
 				| Once you are in the <strong>Upload</strong> window,
 				| you can create a new gallery of dot images or add
 				| to an existing gallery. 
-				ul#upload
+				ul
 					li
 						h5 Upload to Existing Gallery
 						p
@@ -23,23 +23,25 @@ block content
 						| its name that will take you to that gallery's page.
 						| Once in that gallery's page, you can add images by
 						| scrolling to the bottom of the page and clicking
-						| <strong>"Upload Images"</strong>. Once you have selected
+						| <strong>"Select Images for Upload"</strong>. Once you have selected
 						| the images you wish to upload, you need to click 
 						| <strong>"Save"</strong> so that changes you have made
 						| to the album are saved.
 					li
 						h5 Create Gallery
 						p
-						| Otherwise, you can create a gallery to for storing
+						| Otherwise, you can create a gallery to store
 						| your images by clicking  <strong>"+Create Gallery"</strong>
 			li
-				h3
+				h3#test
 					a(href="/test") Test Images
-				p
 				| Once you are in the <strong>Test</strong> window,
-				| you can test your images by selecting images you want processed
+				| you can test your images by selecting images you want processed.</br>
+				| <strong> This page *will not* show your results.</strong> </br>
+				| To learn how to view
+				| results, please go to the <a href="#results">"View Results"</a> section of the Howto page.
 				
-				ul#test
+				ul
 					li
 						h5 Test All
 						p
@@ -55,13 +57,13 @@ block content
 						| <strong>"Submit for Testing"</strong>.
 					
 			li
-				h3
+				h3#results
 					a(href="/keystone/results") View Results
 				p
 				| Once you are in the <strong>Results</strong> window,
 				| you can see all of the results the test has given for
 				| processed images. 
-				ul#results
+				ul
 					li
 						h5 Choose attributes to display
 						p
@@ -71,9 +73,11 @@ block content
 						| attributes you would like to see. 
 					li
 						h5 Sort By
+						| The heading at the top of the page tells you what your results
+						| are sorted by.</br>
 						| You have the option to sort your results by name, 
 						| result value, image url, or date it was posted. 
-						| You can do this by clicking the down arrow at the top of the page.
+						| You can sort by clicking "sorted by img_name" at the top of the page.
 					li
 						h5 See Image
 						p

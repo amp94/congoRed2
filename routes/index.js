@@ -24,7 +24,6 @@ var importRoutes = keystone.importer(__dirname);
 var exec = require('child_process').execFile;
 var dialog = require('dialog');
 
-
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
@@ -61,19 +60,18 @@ exports = module.exports = function(app) {
 		// console.log(results);
 		for (var i = 0; i <= process.length-1; i++) {
 			// console.log(i)
+			if (i % 5 ==4){
+				setTimeout(function() {
+				    console.log('Waiting');
+				}, 200);
+			}
 			exec('java' ,['-jar','./algorithms/Algorithm1.jar',process[i]], function(err, stdout, stderr) {
 				resultsDone += 1;
-				if (resultsDone % 5 ==0){
-					setTimeout(function() {
-					    console.log('Waiting');
-					}, 3000);
-				}
+				
 				if (err!=null){  
 					console.log("ERROR",err)
 				}
 				else{
-					// console.log(stdout);
-					
 					var name = stdout.substring(0,stdout.indexOf(' '))
 					var result = stdout.substring(stdout.indexOf('|')+2,stdout.indexOf('|')+6)
 					var url = stdout.substring(stdout.lastIndexOf('|')+7)
@@ -87,12 +85,17 @@ exports = module.exports = function(app) {
 					});
 					 
 					newResult.save(function(err) {
+						if (!err){
 					    console.log("Result has been saved") // post has been saved	
+						}
+						else{
+							console.log(err)
+						}
 					});
 				}          
 			});
 		};
-		res.send("/results");
+		// res.send("/results");
 	};
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);

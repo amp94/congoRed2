@@ -17,6 +17,11 @@ block content
 						name: "IMAGES",
 						data: selectedImages.toString(),
 					});
+				window.setTimeout(  
+				function( ) {  
+					  window.location.replace("/keystone/results");
+				},  
+				4000);
 		 	});
 		});
 		function handleClick(cb){
@@ -56,16 +61,14 @@ block content
 									
 									input(name="check",type='checkbox', checked=false, value=image, onchange='handleClick(this);')
 									|	Dot #{image.public_id}
-					
-			div(style='bottom: 0; right:0; position: fixed')
+			.div(style='position: fixed; bottom: 0px; right:20px')
 				.panel.panel-default
 					.panel-heading
 						h3.panel-title: a(href='/test') Run Tests
 					.panel-body
 						input(type='checkbox', onchange='toggle(this)')
-						| Select All
+						|  Select All
 						p
-						button(class = 'Button Button--success') SUBMIT FOR TESTING
-						hr 
+						button(class = 'Button Button--success') SUBMIT FOR TESTING	
 		else
 			h3.text-muted There are no image galleries yet.
