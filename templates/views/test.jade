@@ -49,10 +49,9 @@ block content
 		if galleries.length
 			.row
 				.col-sm-8
+					
 					each gallery in galleries
-						h2= gallery.name
-							if gallery.publishedDate
-								.pull-right.text-muted= gallery._.publishedDate.format('Do MMM YYYY')
+						| <h2 id = #{gallery.name}>#{gallery.name}</h2>
 						
 						.row.gallery-images
 							each image in gallery.images
@@ -63,12 +62,20 @@ block content
 									|	Dot #{image.public_id}
 			.div(style='position: fixed; bottom: 0px; right:20px')
 				.panel.panel-default
-					.panel-heading
-						h3.panel-title: a(href='/test') Run Tests
+					.panel-body
+						| </br>
+						
+						h3.panel-title: Go Go to gallery:
+						| </br>
+						each gallery in galleries
+							p &#09 &#09 • &#09
+								a(href='#'+gallery.name) #{gallery.name} </br>
+						| <br>
+					h3.panel-title: a(href='/test') Run Tests
 					.panel-body
 						input(type='checkbox', onchange='toggle(this)')
 						|  Select All
-						p
+
 						button(class = 'Button Button--success') SUBMIT FOR TESTING	
 		else
 			h3.text-muted There are no image galleries yet.
