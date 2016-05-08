@@ -1,85 +1,108 @@
 extends ../layouts/default
 
 block content
+	link(href='/keystone/styles/keystone.min.css', rel='stylesheet')
 	.container: .jumbotron
-		h2 How to:
+		h1 How to:
 		h2
 		| This application runs the Congo Red Dot Test on uploaded 
-		| images. To use, there are three basic steps:
+		| images. To use, there are three basic steps:</br></br>
 		ul#steps
 			li
-				h3#upload
+				h2#upload
 					a(href="/keystone/galleries") Upload Images
 				p
 				| Once you are in the <strong>Upload</strong> window,
 				| you can create a new gallery of dot images or add
-				| to an existing gallery. 
+				| to an existing gallery. </br> </br>
 				ul
 					li
-						h5 Upload to Existing Gallery
+						h3 Upload to Existing Gallery
 						p
 						| To add to an existing gallery, 
 						| select the gallery listed in this window by clicking 
-						| its name that will take you to that gallery's page.
+						| its name. That will take you to that gallery's page.
 						| Once in that gallery's page, you can add images by
 						| scrolling to the bottom of the page and clicking
-						| <strong>"Select Images for Upload"</strong>. Once you have selected
-						| the images you wish to upload, you need to click 
-						| <strong>"Save"</strong> so that changes you have made
-						| to the album are saved.
+						| <button class="Button Button--default">Select Images for Upload</button>
+						
+						| </br></br>Once you have selected
+						| the images you wish to upload, you need to click  
+						| <button class="Button Button--primary">Save</button>
+						
+						| so that changes you have made
+						| to the album are saved.</br></br>
 					li
-						h5 Create Gallery
+						h3 Create Gallery
 						p
 						| Otherwise, you can create a gallery to store
-						| your images by clicking  <strong>"+Create Gallery"</strong>
+						| your images by clicking 
+						| <button class="Button Button--success">+ Create Gallery</button>
+						| on the "Uploads" page.</br></br>
+						
 			li
-				h3#test
+				h2#test
 					a(href="/test") Test Images
 				| Once you are in the <strong>Test</strong> window,
-				| you can test your images by selecting images you want processed.</br>
-				| <strong> This page *will not* show your results.</strong> </br>
-				| To learn how to view
-				| results, please go to the <a href="#results">"View Results"</a> section of the Howto page.
-				
+				| you can test your images by selecting images you want processed.</br></br>
 				ul
 					li
-						h5 Test All
+						h3 Test All
 						p
 						| To test all images, check the box that says "Select All" before clicking
-						| <strong>"Submit for Testing"</strong> at the bottom right
-						| of the page.
+						button(class = 'Button Button--success') SUBMIT FOR TESTING	
+						|  at the bottom right
+						| of the page.</br></br>
 					li
-						h5 Test Selected
+						h3 Test Selected
 						p
 						| To test selected images, as you scroll, check boxes 
 						| corresponding to images you would like tested. 
 						| On the bottom right hand of the page, click
-						| <strong>"Submit for Testing"</strong>.
+						button(class = 'Button Button--success') SUBMIT FOR TESTING	
+						| </br></br>
 					
 			li
-				h3#results
+				h2#results
 					a(href="/keystone/results") View Results
 				p
 				| Once you are in the <strong>Results</strong> window,
 				| you can see all of the results the test has given for
-				| processed images. 
+				| processed images. </br></br>
 				ul
 					li
-						h5 Choose attributes to display
+						h3 Sort 
+						| The heading at the top of the page tells you what your results
+						| are sorted by.</br>
+						| 
+						| You have the option to sort your results by name, 
+						| result value, image url, or date it was posted. 
+						| You can sort by clicking <img src="images/sort.png" height="32px" align="middle"> at the top of the page.
+						| </br></br>
+					li
+						h3 Filter (Search)
+						p
+						| You can modify the results that populate the table so
+						| that only results that fit certain criteria appear.
+						| You can filter by clicking
+						| <button class="Button Button--default" >
+						| <span class="ListHeader__columns__icon octicon octicon-list-unordered" >
+						| </span><span class="ListHeader__columns__label" >Filter</span>
+						| <span class="disclosure-arrow" ></span></button>
+						| This will prompt you for what criteria you are filtering by.</br></br>
+					li
+						h3 Choose attributes to display
 						p
 						| The page defaults on showing just the image name, result,
 						| and url, but you can add attributes to display by clicking 
-						| <strong>"Columns"</strong> and selecting the 
-						| attributes you would like to see. 
+						| <button class="Button Button--default" >
+						| <span class="ListHeader__columns__icon octicon octicon-list-unordered" >
+						| </span><span class="ListHeader__columns__label" >Columns</span>
+						| <span class="disclosure-arrow" ></span></button>
+						| and selecting the 
+						| attributes you would like to see.</br></br>
 					li
-						h5 Sort By
-						| The heading at the top of the page tells you what your results
-						| are sorted by.</br>
-						| You have the option to sort your results by name, 
-						| result value, image url, or date it was posted. 
-						| You can sort by clicking "sorted by img_name" at the top of the page.
-					li
-						h5 See Image
+						h3 See Image
 						p
 						| You can see the image the result corresponds
 						| to by clicking its url.
