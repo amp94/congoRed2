@@ -63,7 +63,7 @@ exports = module.exports = function(app) {
 			if (i % 5 ==4){
 				setTimeout(function() {
 				    console.log('Waiting');
-				}, 200);
+				}, 500);
 			}
 			exec('java' ,['-jar','./algorithms/Algorithm1.jar',process[i]], function(err, stdout, stderr) {
 				resultsDone += 1;

@@ -63,19 +63,16 @@ block content
 			.div(style='position: fixed; bottom: 0px; right:20px')
 				.panel.panel-default
 					.panel-body
-						| </br>
 						
-						h3.panel-title: Go Go to gallery:
-						| </br>
+						h3.panel-title: a(href='/#') Go to Gallery:
 						each gallery in galleries
-							p &#09 &#09 • &#09
-								a(href='#'+gallery.name) #{gallery.name} </br>
-						| <br>
-					h3.panel-title: a(href='/test') Run Tests
-					.panel-body
+							p(style='margin-bottom: 0px') &#09 &#09 • &#09
+								a(href='#'+gallery.name) #{gallery.name} 
+						</br>
+						h3.panel-title: a(href='/#') Run Tests </br>
 						input(type='checkbox', onchange='toggle(this)')
 						|  Select All
-
+						</br>
 						button(class = 'Button Button--success') SUBMIT FOR TESTING	
 		else
 			h3.text-muted There are no image galleries yet.
